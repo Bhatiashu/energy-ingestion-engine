@@ -54,27 +54,27 @@ A drop in efficiency (for example, below 85%) may indicate hardware faults or en
 ## 🏗 Architecture Overview
 
 Smart Meters & EV Chargers
-        |
-        | (1-minute telemetry)
-        |
-   POST /v1/ingest
-        |
- Polymorphic Ingestion Layer
-        |
-   ┌───────────────┬───────────────┐
-   │               │               │
-Vehicle Pipeline   Meter Pipeline
-   │               │
-History Insert     History Insert
-   │               │
-Live Upsert        Live Upsert
-   │               │
-MongoDB (Cold + Hot Stores)
-        |
+|
+| (1-minute telemetry)
+|
+POST /v1/ingest
+|
+Polymorphic Ingestion Layer
+|
+┌───────────────┬───────────────┐
+│ │ │
+Vehicle Pipeline Meter Pipeline
+│ │
+History Insert History Insert
+│ │
+Live Upsert Live Upsert
+│ │
+MongoDB (Hot & Cold Collections)
+|
 GET /v1/analytics/performance/:vehicleId
-        |
+|
 Analytics Aggregation
-        |
+|
 Performance Summary
 
 
